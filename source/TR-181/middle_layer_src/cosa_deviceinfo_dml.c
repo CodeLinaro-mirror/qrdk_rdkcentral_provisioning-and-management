@@ -1756,6 +1756,8 @@ BOOL
     /* Required for xPC sync */
     if (strcmp(ParamName, "URL") == 0)
     {
+      if( valid_url(pString) )
+      {
         if (syscfg_set_commit(NULL, "TelemetryEndpointURL", pString) != 0)
         {
             CcspTraceError(("syscfg_set failed\n"));
@@ -1765,6 +1767,11 @@ BOOL
         {
             return TRUE;
         }
+      }
+      else
+      {
+	    return FALSE;
+      }
     }
 
     /* CcspTraceWarning(("Unsupported parameter '%s'\n", ParamName)); */
@@ -9411,6 +9418,8 @@ BOOL
 
     if (strcmp(ParamName, "S3SigningUrl") == 0)
     {
+      if ( valid_url(pString) )
+      {
         if (syscfg_set_commit(NULL, "CrashUpload_S3SigningUrl", pString) != 0)
         {
             CcspTraceError(("syscfg_set failed\n"));
@@ -9420,6 +9429,11 @@ BOOL
         {
             return TRUE;
         }
+      }
+      else
+      {
+	    return FALSE;
+      }
     }
 
 /* CcspTraceWarning(("Unsupported parameter '%s'\n", ParamName)); */
