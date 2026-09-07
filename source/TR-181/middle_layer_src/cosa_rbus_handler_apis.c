@@ -1444,12 +1444,17 @@ static void Cosa_Rbus_Handler_WanStatus_EventHandler(rbusHandle_t handle, rbusEv
         {
             v_secure_system("sh /etc/network_response.sh &");
         }
-#if defined (_XB6_PRODUCT_REQ_)
         else
         {
+#if defined (_XB6_PRODUCT_REQ_)
             v_secure_system("sh /etc/network_response.sh OnlyForNoRf &");
-        }
 #endif /** _XB6_PRODUCT_REQ_ */
+            if( isRevSshActive() )
+            {
+                CcspTraceInfo(("%s: WAN Status is %s, stopping active reverse SSH session\n", __FUNCTION__, acStatus));
+                setXOpsReverseSshTrigger("stop");
+            }
+        }
     }
 }
 
