@@ -132,6 +132,7 @@ void Send_Notification_Task(char* delay, char* startTime, char* download_status,
 void set_firmware_download_start_time(char *start_time);
 char* get_firmware_download_start_time();
 void *handleBleRestart(void *arg);
+static BOOL valid_url (char *buff);
 #if (defined _COSA_INTEL_XB3_ARM_)
 BOOL CMRt_Isltn_Enable(BOOL status);
 #endif
