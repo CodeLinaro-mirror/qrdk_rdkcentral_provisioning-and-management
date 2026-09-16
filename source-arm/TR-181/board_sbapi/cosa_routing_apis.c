@@ -2933,7 +2933,7 @@ Route6_GetRouteTable(const char *ifname, RouteInfo6_t infos[], int *numInfo)
         bzero(info6, sizeof(RouteInfo6_t));
 
         if (strcmp(prefix, "default") == 0)
-            //snprintf(info6->prefix, sizeof(info6->prefix), "::/0");
+            snprintf(info6->prefix, sizeof(info6->prefix), "::/0");
 			continue;
         else
             snprintf(info6->prefix, sizeof(info6->prefix), "%s", prefix);
